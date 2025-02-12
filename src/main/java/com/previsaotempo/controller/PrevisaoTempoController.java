@@ -19,3 +19,11 @@ public class PrevisaoTempoController {
         return ResponseEntity.ok(previsao);
     }
 }
+
+@GetMapping("/geolocalizacao")
+public ResponseEntity<PrevisaoDTO> getPrevisaoPorGeolocalizacao(
+        @RequestParam Double latitude,
+        @RequestParam Double longitude) {
+    PrevisaoDTO previsao = previsaoTempoService.getPrevisaoPorGeolocalizacao(latitude, longitude);
+    return ResponseEntity.ok(previsao);
+}

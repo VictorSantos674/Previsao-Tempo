@@ -15,3 +15,12 @@ public class PrevisaoTempoService {
         return openWeatherMapIntegration.getPrevisao(cidade);
     }
 }
+
+public PrevisaoDTO getPrevisaoPorGeolocalizacao(Double latitude, Double longitude) {
+    String url = config.getApiUrl() + "?lat=" + latitude + "&lon=" + longitude + "&appid=" + config.getApiKey();
+    try {
+        return restTemplate.getForObject(url, PrevisaoDTO.class);
+    } catch (Exception e) {
+        throw new ApiIntegrationException("Erro ao integrar com a API do OpenWeatherMap");
+    }
+}
